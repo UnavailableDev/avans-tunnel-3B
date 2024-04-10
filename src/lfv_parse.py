@@ -10,7 +10,7 @@ from modbus import *
 class process_lfv:
     def __init__(self):
         self.modbus = modbus()
-        self.Verlichting = Verlichting(self.modbus)
+        #self.Verlichting = Verlichting(self.modbus)
         self.Sos = SOS(self.modbus)
         #self.Verkeerslicht = Verkeerslicht(self.modbus, 4)
         self.Matrix = Matrix(self.modbus)
