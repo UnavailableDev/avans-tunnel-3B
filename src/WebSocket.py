@@ -155,7 +155,7 @@ class WebsocketData:
             case "lights":
                 if self.sosStatus == False:
                     data = type["value"]
-                    self.lfv_processing.Verlichting.SetStand[data]
+                    self.lfv_processing.Verlichting.SetStand([data])
                     print(data)
             case "trafficLights":
                 #if self.sosStatus == False:
