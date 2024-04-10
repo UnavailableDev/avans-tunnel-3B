@@ -9,7 +9,7 @@ connected_clients = set()
 
 MatrixState = {
     'road_closed': 1,
-    'construction': 100,
+    'construction': 999,
     'disabled': 0
 }
 
@@ -158,7 +158,20 @@ class WebsocketData:
                 data = type["statusSOS"]
                 self.sosStatus = False
                 print(data)
-
+            case "cctvPreset":
+                data = type["preset"]
+                self.lfv_processing.cameras.cameras[0].SetPreset([data])
+                print(data)
+            case "cctvPreset":
+                pan = type["pan"]
+                self.lfv_processing.cameras.cameras[0].SetPan([pan])
+                tilt = type["tilt"]
+                self.lfv_processing.cameras.cameras[0].SetTilt([tilt])
+                zoom = type["zoom"]
+                self.lfv_processing.cameras.cameras[0].SetZoom([zoom])
+                print(pan) 
+                print(tilt) 
+                print(zoom)
             # 3B -> HMI
 
     # Actuele snelheid per auto per zone 
