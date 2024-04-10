@@ -16,7 +16,7 @@ class StateTunnel(Enum):
 
 class WebsocketData:
     def __init__(self):
-        self.CurrentTunnelState = StateTunnel.PRE_INIT
+        self.CurrentTunnelState = StateTunnel.INIT
         self.jsonMessage = None
         self.lfv_processing = None
         self.start = False
