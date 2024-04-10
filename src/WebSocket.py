@@ -25,7 +25,7 @@ class WebsocketData:
 
     async def stateMachine(self):
          while True:
-            await asyncio.sleep(1)
+            await asyncio.sleep(2)
             match self.CurrentTunnelState:
                 case StateTunnel.PRE_INIT:
                     print("PRE INIT")
@@ -281,7 +281,8 @@ class WebsocketData:
         print("Server started. Listening on ws://localhost:8081")
 
         # Start broadcasting messages
-        broadcast_task = asyncio.create_task(self.broadcast_message())
+        #broadcast_task = asyncio.create_task(self.broadcast_message())
+        stateMachineTask = asyncio.create_task(self.stateMachine())
 
 
 
