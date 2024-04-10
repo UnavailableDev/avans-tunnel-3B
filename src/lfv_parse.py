@@ -11,13 +11,17 @@ class process_lfv:
     def __init__(self):
         self.modbus = modbus()
         #self.Verlichting = Verlichting(self.modbus)
+        print("SOS")
         self.Sos = SOS(self.modbus)
         #self.Verkeerslicht = Verkeerslicht(self.modbus, 4)
+        print("matrix")
         self.Matrix = Matrix(self.modbus)
+        print("afsluitboom")
         self.Afsluitboom = Afsluitboom(self.modbus)
 
         NumberOfCameras = 3
         self.cameras = Cameras(self.modbus, NumberOfCameras)
+        
         
 
     def  detect_conflict(self):
