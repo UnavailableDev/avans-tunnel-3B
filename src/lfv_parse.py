@@ -59,6 +59,7 @@ def sos_on(lfv: process_lfv , zone: int):
     #for z in lfv.Verlichting.Zones:
     #    z.SetAutoRegeling(False)
     #lfv.Verlichting.SetStand([10])
+    lfv.Verlichting.SetStand([10])
     lfv.Matrix.SetStand([1])
     #TODO camera stand toevoegen
 
@@ -67,7 +68,7 @@ def sos_off(lfv: process_lfv ):
     lfv.Afsluitboom.SetStand([2])
     #while lfv.Afsluitboom.Stand != 3:
     #    lfv.Afsluitboom.update()
-    #lfv.Verkeerslicht.SetStand([2])
+    lfv.Verkeerslicht.SetStand([2])
     #for zone in lfv.Verlichting.Zones:
     #    zone.SetAutoRegeling(True)
     lfv.Matrix.SetStand([0])
