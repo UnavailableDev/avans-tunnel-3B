@@ -22,6 +22,7 @@ class process_lfv:
         NumberOfCameras = 3
         
         self.cameras = Cameras(self.modbus, NumberOfCameras)
+        print("success")
         
         
 
