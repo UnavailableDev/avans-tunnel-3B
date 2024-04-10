@@ -27,8 +27,7 @@ class Afsluitboom:
             self.Storing = regs[5]
 
     def SetStand(self, value):
-        if self.Bereikbaar:
-            return self.ModbusInstance.set(MODBUS_AFSLUITBOOM_IP, 1006, value)
+        return self.ModbusInstance.set(MODBUS_AFSLUITBOOM_IP, 1006, value)
 
 
         

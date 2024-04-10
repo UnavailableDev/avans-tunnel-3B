@@ -129,7 +129,9 @@ class WebsocketData:
                 if self.sosStatus == False:
                     if type['open']:
                         self.lfv_processing.Afsluitboom.SetStand([2])
+                        print("barrier open")
                     if type['open'] == False:
+                        print("barrier close")
                         self.lfv_processing.Afsluitboom.SetStand([1])
 
             case "matrix": 
