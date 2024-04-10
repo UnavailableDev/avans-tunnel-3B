@@ -136,8 +136,9 @@ class WebsocketData:
                 if self.sosStatus == False:
                     data = type["state"]
                     value = MatrixState[data]
+                    print(value)
                     self.lfv_processing.Matrix.SetStand([value])
-                    print(data)
+                    #print(data)
             case "lights":
                 if self.sosStatus == False:
                     data = type["value"]
