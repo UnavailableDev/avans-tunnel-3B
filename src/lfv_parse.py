@@ -45,7 +45,7 @@ class process_lfv:
         return 0
 
     def update_all(self):
-        self.Verlichting.update()
+        #self.Verlichting.update()
         self.Sos.update()
         #self.Verkeerslicht.update()
         self.Afsluitboom.update()
