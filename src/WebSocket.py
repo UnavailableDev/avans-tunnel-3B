@@ -12,6 +12,17 @@ MatrixState = {
     'construction': 999,
     'disabled': 0
 }
+CctvPreset = {
+    'preset1': 1,
+    'preset2': 1,
+    'preset3': 1,
+    'preset4': 1,
+    'preset5': 1,
+    'preset6': 1,
+    'preset7': 1,
+    'preset8': 1,
+    'preset9': 1,
+}
 
 class StateTunnel(Enum):
     PRE_INIT = 0
@@ -162,15 +173,16 @@ class WebsocketData:
                 print(data)
             case "cctvPreset":
                 data = type["preset"]
+                value = CctvPreset[data]
                 self.lfv_processing.cameras.cameras[0].SetPreset([data])
                 print(data)
-            case "cctvPreset":
+            case "cctvControl":
                 pan = type["pan"]
-                self.lfv_processing.cameras.cameras[0].SetPan([pan])
                 tilt = type["tilt"]
-                self.lfv_processing.cameras.cameras[0].SetTilt([tilt])
                 zoom = type["zoom"]
                 self.lfv_processing.cameras.cameras[0].SetZoom([zoom])
+                self.lfv_processing.cameras.cameras[0].SetTilt([tilt])
+                self.lfv_processing.cameras.cameras[0].SetPan([pan])
                 print(pan) 
                 print(tilt) 
                 print(zoom)
