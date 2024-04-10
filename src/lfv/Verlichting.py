@@ -19,7 +19,7 @@ class Zone:
         pass
 
     def SetStand(self, value ): # value between 0-10
-        return self.ModbusInstance.set(MODBUS_VERLICHTING_IP,self.StartAddress+1, value)
+        return self.ModbusInstance.set(MODBUS_VERLICHTING_IP,self.StartAddress, value + 1)
 
 
 class Verlichting:
