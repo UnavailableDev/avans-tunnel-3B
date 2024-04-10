@@ -4,6 +4,7 @@ import json
 from enum import Enum
 from lfv_ready import *
 from lfv_parse import *
+import time
 connected_clients = set()
 
 
@@ -30,6 +31,7 @@ class WebsocketData:
                 case StateTunnel.PRE_INIT:
                     print("PRE INIT")
                     # Poll holding register to see if PLC's available
+                    time.sleep(10)
                     if  lfv_check().check():
                         # Send update message to HMI and blocking wait until response
                         print(self.jsonMessage)

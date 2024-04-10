@@ -8,4 +8,4 @@ class lfv_check:
    def check(self):
       #TODO: define ip and modbus address
       reg = self.modbus.get(ip=MODBUS_PLC_IP, start_addr=500)
-      return (reg == 1)
+      return (reg[0] == 1)
