@@ -7,6 +7,11 @@ from lfv_parse import *
 import time
 connected_clients = set()
 
+MatrixState = {
+    'road_closed': 1,
+    'construction': 100,
+    'disabled': 0
+}
 
 class StateTunnel(Enum):
     PRE_INIT = 0
@@ -130,7 +135,8 @@ class WebsocketData:
             case "matrix": 
                 if self.sosStatus == False:
                     data = type["state"]
-                    self.lfv_processing.Matrix.SetStand([data])
+                    value = MatrixState[data]
+                    self.lfv_processing.Matrix.SetStand([value])
                     print(data)
             case "lights":
                 if self.sosStatus == False:
