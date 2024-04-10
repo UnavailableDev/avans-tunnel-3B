@@ -38,6 +38,7 @@ class WebsocketData:
                         self.CurrentTunnelState = StateTunnel.INIT
                 case StateTunnel.INIT:
                     print("INIT")
+                    await self.startStatus(True)
                     while(self.start == False):
                         await asyncio.sleep(1)
                         print(self.jsonMessage)
