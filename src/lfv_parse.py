@@ -21,7 +21,7 @@ class process_lfv:
         print("camera")
         NumberOfCameras = 3
         
-        self.cameras = Cameras(self.modbus, NumberOfCameras)
+        #self.cameras = Cameras(self.modbus, NumberOfCameras)
         print("success")
         
         
