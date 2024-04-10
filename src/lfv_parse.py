@@ -59,7 +59,7 @@ def sos_on(lfv: process_lfv , zone: int):
     #for z in lfv.Verlichting.Zones:
     #    z.SetAutoRegeling(False)
     #lfv.Verlichting.SetStand([10])
-    lfv.Verlichting.SetStand([10])
+    #lfv.Verlichting.SetStand([10])
     lfv.Matrix.SetStand([1])
     #TODO camera stand toevoegen
 
