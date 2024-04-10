@@ -1,7 +1,7 @@
 from typing import List
 from modbus import *
 
-MODBUS_VERLICHTING_IP = ""
+MODBUS_VERLICHTING_IP = "192.168.10.238"
 
 class Zone:
     def __init__(self, ModbusInstance: modbus, startAddress: int ):
@@ -29,7 +29,7 @@ class Verlichting:
         self.ModbusInstance = ModbusInstance
         self.Zones: List[Zone] = []
 
-        self.StartAddresses = start_addresses = [3500,3506, 3512, 3518]  # start addresses
+        self.StartAddresses = start_addresses = [3024, 3030, 3036, 3042]  # start addresses
         
         for start_address in start_addresses:
             zone = Zone(ModbusInstance, start_address)
