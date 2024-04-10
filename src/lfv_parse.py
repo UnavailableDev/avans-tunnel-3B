@@ -10,9 +10,9 @@ from modbus import *
 class process_lfv:
     def __init__(self):
         self.modbus = modbus()
-        self.Verlichting = Verlichting(self.modbus)
+        #self.Verlichting = Verlichting(self.modbus)
         self.Sos = SOS(self.modbus)
-        self.Verkeerslicht = Verkeerslicht(self.modbus, 4)
+        #self.Verkeerslicht = Verkeerslicht(self.modbus, 4)
         self.Matrix = Matrix(self.modbus)
         self.Afsluitboom = Afsluitboom(self.modbus)
 
@@ -45,30 +45,30 @@ class process_lfv:
         return 0
 
     def update_all(self):
-        self.Verlichting.update()
+        #self.Verlichting.update()
         self.Sos.update()
         self.Verkeerslicht.update()
         self.Afsluitboom.update()
         self.Matrix.update()
 
 def sos_on(lfv: process_lfv , zone: int):
-    lfv.Verkeerslicht.SetStand([1])
-    while lfv.Verkeerslicht.Stand != 1:
-        lfv.Verkeerslicht.update()
+    #lfv.Verkeerslicht.SetStand([1])
+    #while lfv.Verkeerslicht.Stand != 1:
+    #    lfv.Verkeerslicht.update()
     lfv.Afsluitboom.SetStand([1])
-    for z in lfv.Verlichting.Zones:
-        z.SetAutoRegeling(False)
-    lfv.Verlichting.SetStand([10])
+    #for z in lfv.Verlichting.Zones:
+    #    z.SetAutoRegeling(False)
+    #lfv.Verlichting.SetStand([10])
     lfv.Matrix.SetStand([1])
     #TODO camera stand toevoegen
 
 
 def sos_off(lfv: process_lfv ):
     lfv.Afsluitboom.SetStand([2])
-    while lfv.Afsluitboom.Stand != 3:
-        lfv.Afsluitboom.update()
-    lfv.Verkeerslicht.SetStand([2])
-    for zone in lfv.Verlichting.Zones:
-        zone.SetAutoRegeling(True)
+    #while lfv.Afsluitboom.Stand != 3:
+    #    lfv.Afsluitboom.update()
+    #lfv.Verkeerslicht.SetStand([2])
+    #for zone in lfv.Verlichting.Zones:
+    #    zone.SetAutoRegeling(True)
     lfv.Matrix.SetStand([0])
     

@@ -38,11 +38,10 @@ class WebsocketData:
                         self.CurrentTunnelState = StateTunnel.INIT
                 case StateTunnel.INIT:
                     print("INIT")
-                    await self.startStatus(True)
                     while(self.start == False):
                         await asyncio.sleep(1)
                         print(self.jsonMessage)
-                    #self.lfv_processing = process_lfv()
+                    self.lfv_processing = process_lfv()
                     
                     # goto next state
                     self.CurrentTunnelState = StateTunnel.RUN
@@ -236,35 +235,30 @@ class WebsocketData:
                 print("barrier")
                 if self.sosStatus == False:
                     if type['open']:
-                            if self.lfv_processing.Afsluitboom.SetStand([2]):
-                                self.lfVOnline[2] = False
-                                await self.lfvStatussen(self.lfVOnline)
+                        self.lfv_processing.Afsluitboom.SetStand([2])
                     if type['open'] == False:
-                        if self.lfv_processing.Afsluitboom.SetStand([1]):
-                            self.lfVOnline[2] = False
-                            await self.lfvStatussen(self.lfVOnline)
+                        self.lfv_processing.Afsluitboom.SetStand([1])
+
             case "matrix": 
                 if self.sosStatus == False:
                     data = type["state"]
-                    if self.lfv_processing.Matrix.SetStand([data]) == False:
-                        self.lfVOnline[3] = False
-                        await self.lfvStatussen(self.lfVOnline)
+                    self.lfv_processing.Matrix.SetStand([data])
                     print(data)
             case "lights":
                 if self.sosStatus == False:
                     data = type["value"]
                     
-                    if self.lfv_processing.Verlichting.SetStand[data] == False:
-                        self.lfVOnline[4] = False
-                        await self.lfvStatussen(self.lfVOnline)
+                   # if self.lfv_processing.Verlichting.SetStand[data] == False:
+                   #     self.lfVOnline[4] = False
+                   #     await self.lfvStatussen(self.lfVOnline)
                     print(data)
             case "trafficLights":
-                if self.sosStatus == False:
-                    data = type["state"]
-                    if self.lfv_processing.Verkeerslicht.SetStand([data]) == False:
-                        self.lfVOnline[5] = False
-                        await self.lfvStatussen(self.lfVOnline)
-                    print(data)
+                #if self.sosStatus == False:
+                #    data = type["state"]
+                #    if self.lfv_processing.Verkeerslicht.SetStand([data]) == False:
+                #        self.lfVOnline[5] = False
+                #        await self.lfvStatussen(self.lfVOnline)
+                print(data)
             case "sosBericht":
                 data = type["statusSOS"]
                 self.sosStatus = False
