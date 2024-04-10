@@ -18,8 +18,9 @@ class process_lfv:
         self.Matrix = Matrix(self.modbus)
         print("afsluitboom")
         self.Afsluitboom = Afsluitboom(self.modbus)
-
+        print("camera")
         NumberOfCameras = 3
+        
         self.cameras = Cameras(self.modbus, NumberOfCameras)
         
         

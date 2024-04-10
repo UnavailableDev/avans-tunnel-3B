@@ -56,10 +56,11 @@ class WebsocketData:
                         self.CurrentTunnelState = StateTunnel.INIT
                 case StateTunnel.INIT:
                     print("INIT")
+                    self.lfv_processing = process_lfv()
                     while(self.start == False):
                         await asyncio.sleep(1)
                         print(self.jsonMessage)
-                    self.lfv_processing = process_lfv()
+                    
                     
                     # goto next state
                     self.CurrentTunnelState = StateTunnel.RUN
