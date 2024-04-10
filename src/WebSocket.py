@@ -110,37 +110,45 @@ class WebsocketData:
     async def parseJSON(self, message):
         type = json.loads(message)
         typeName = type["type"]
-
         match typeName:
             case "start":
-                print("start")
+                self.start = True
             case "photocell":
-                data = type["on"]
-                print(data)
+                if self.sosStatus == False:
+                    data = type["on"] 
+                    print(data)
             case "barrier":
                 print("barrier")
-            case "matrix":
-                data = type["open"]
-                print(data)
+                if self.sosStatus == False:
+                    if type['open']:
+                        self.lfv_processing.Afsluitboom.SetStand([2])
+                    if type['open'] == False:
+                        self.lfv_processing.Afsluitboom.SetStand([1])
+
+            case "matrix": 
+                if self.sosStatus == False:
+                    data = type["state"]
+                    self.lfv_processing.Matrix.SetStand([data])
+                    print(data)
             case "lights":
-                data = type["value"]
-                print(data)
+                if self.sosStatus == False:
+                    data = type["value"]
+                    
+                   # if self.lfv_processing.Verlichting.SetStand[data] == False:
+                   #     self.lfVOnline[4] = False
+                   #     await self.lfvStatussen(self.lfVOnline)
+                    print(data)
             case "trafficLights":
-                data = type["state"]
+                #if self.sosStatus == False:
+                #    data = type["state"]
+                #    if self.lfv_processing.Verkeerslicht.SetStand([data]) == False:
+                #        self.lfVOnline[5] = False
+                #        await self.lfvStatussen(self.lfVOnline)
                 print(data)
             case "sosBericht":
                 data = type["statusSOS"]
+                self.sosStatus = False
                 print(data)
-            case "cctvPreset":
-                data = type["preset"]
-                print(data)
-            case "cctvPreset":
-                pan = type["pan"]
-                tilt = type["tilt"]
-                zoom = type["zoom"]
-                print(pan) 
-                print(tilt) 
-                print(zoom) 
 
             # 3B -> HMI
 
@@ -221,48 +229,7 @@ class WebsocketData:
             await ws.send(data)
 
 
-    async def parseJSON(self, message):
-        type = json.loads(message)
-        typeName = type["type"]
-        match typeName:
-            case "start":
-                self.start = True
-            case "photocell":
-                if self.sosStatus == False:
-                    data = type["on"] 
-                    print(data)
-            case "barrier":
-                print("barrier")
-                if self.sosStatus == False:
-                    if type['open']:
-                        self.lfv_processing.Afsluitboom.SetStand([2])
-                    if type['open'] == False:
-                        self.lfv_processing.Afsluitboom.SetStand([1])
 
-            case "matrix": 
-                if self.sosStatus == False:
-                    data = type["state"]
-                    self.lfv_processing.Matrix.SetStand([data])
-                    print(data)
-            case "lights":
-                if self.sosStatus == False:
-                    data = type["value"]
-                    
-                   # if self.lfv_processing.Verlichting.SetStand[data] == False:
-                   #     self.lfVOnline[4] = False
-                   #     await self.lfvStatussen(self.lfVOnline)
-                    print(data)
-            case "trafficLights":
-                #if self.sosStatus == False:
-                #    data = type["state"]
-                #    if self.lfv_processing.Verkeerslicht.SetStand([data]) == False:
-                #        self.lfVOnline[5] = False
-                #        await self.lfvStatussen(self.lfVOnline)
-                print(data)
-            case "sosBericht":
-                data = type["statusSOS"]
-                self.sosStatus = False
-                print(data)
 
     
     async def broadcast_message(self):
